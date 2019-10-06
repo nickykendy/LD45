@@ -1,0 +1,75 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Actors/Actor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Actors/Slime.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Slime/Slime1.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Slime/Slime2.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Slime/Slime3.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Slime/Slime4.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/SlimeDie/SlimeDie1.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/SlimeDie/SlimeDie2.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/SlimeDie/SlimeDie3.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/SlimeDie/SlimeDie4.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/SlimeDie/SlimeDie5.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Misc/Talk.png" type="Texture" id=12]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "die",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "attack",
+"speed": 9.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "walk",
+"speed": 6.5
+} ]
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 10.1567
+height = 8.07925
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 12.6959
+height = 3.61646
+
+[node name="Slime" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Body" parent="." index="0"]
+frames = SubResource( 1 )
+animation = "attack"
+frame = 2
+
+[node name="CollisionShape2D" parent="." index="1"]
+rotation = 1.5708
+shape = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="." index="2"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Position2D" type="Position2D" parent="." index="4"]
+
+[node name="Area2D" type="Area2D" parent="Position2D" index="0"]
+position = Vector2( 0.153885, 3.46252 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position2D/Area2D" index="0"]
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="." index="6"]
+visible = false
+position = Vector2( -0.153889, -15.2351 )
+texture = ExtResource( 12 )

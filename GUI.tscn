@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://GUI.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Misc/HP.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Swords/Equip.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Swords/Sword2.png" type="Texture" id=4]
+
+[node name="GUI" type="Control"]
+margin_right = 480.0
+margin_bottom = 300.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HP" type="Sprite" parent="."]
+editor/display_folded = true
+visible = false
+position = Vector2( 5, 5 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Label" type="Label" parent="HP"]
+margin_left = 20.7637
+margin_top = 1.5862
+margin_right = 73.7637
+margin_bottom = 15.5862
+text = "100/100"
+
+[node name="Equip" type="Sprite" parent="."]
+visible = false
+position = Vector2( 97, 13 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="sword" type="Sprite" parent="Equip"]
+visible = false
+texture = ExtResource( 4 )
+
+[node name="Dialogue" type="Polygon2D" parent="."]
+editor/display_folded = true
+visible = false
+position = Vector2( 60, 0 )
+color = Color( 0.117647, 0.0901961, 0.0901961, 1 )
+polygon = PoolVector2Array( 40, 250, 40, 290, 300, 290, 300, 250 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Dialogue"]
+margin_left = 45.0
+margin_top = 254.0
+margin_right = 295.0
+margin_bottom = 286.0
+text = "Hello, test"
