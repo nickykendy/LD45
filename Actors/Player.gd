@@ -17,7 +17,7 @@ signal StartDialogue
 signal UpdateDialogue
 
 func _ready():
-	SPEED = 40
+	SPEED = 50
 
 func control():
 	right_key = Input.is_action_pressed("right_key")
@@ -83,19 +83,20 @@ func _on_HurtTimer_timeout():
 func _on_Dealer_body_exited(body):
 	if body.name == "Player":
 		var dealer = get_parent().get_node("Dealer")
-		if Data.scene == 0 or Data.scene == 2 or Data.scene == 4 or Data.scene == 6:
+		var index = floor(Data.scene)
+		if index == 0 or index == 2 or index == 4 or index == 6:
 			dealer.talk.visible = false
 			can_talk = false
 
 func _on_Dealer_body_entered(body):
 	if body.name == "Player":
 		var dealer = get_parent().get_node("Dealer")
-		if Data.scene == 0 or Data.scene == 2 or Data.scene == 4 or Data.scene == 6:
+		var index = floor(Data.scene)
+		if index == 0 or index == 2 or index == 4 or index == 6:
 			dealer.talk.visible = true
 			can_talk = true
 
 func _on_Loot_body_entered(body):
-	print(body)
 	if body.name == "Player":
 		can_attack = true
 		var loot = get_parent().get_node("Loot")

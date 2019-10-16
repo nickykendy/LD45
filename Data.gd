@@ -1,6 +1,6 @@
 extends Node
 
-var scene = 0
+var scene = 0.0
 
 func _ready():
 	pass # Replace with function body.

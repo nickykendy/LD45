@@ -51,10 +51,10 @@ func control():
 func take_damage(damage):
 	is_hurting = true
 	hurt_cd.start(0.1)
-	cur_health -= damage
+	cur_health = clamp(cur_health-damage, 0, MAX_HEALTH)
 	emit_signal("UpdateHp", MAX_HEALTH, cur_health)
 	update_hp()
-	if cur_health <= 0:
+	if cur_health <= 0 and is_alive:
 		is_alive = false
 		die()
 
@@ -74,7 +74,7 @@ func _on_Body_animation_finished():
 			body.stop()
 			body.frame = 4
 			restartTimer.start(1.5)
-			Data.scene -= 1
+			Data.scene -= 0.5
 		else:
 			queue_free()
 
